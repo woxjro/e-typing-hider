@@ -1,29 +1,98 @@
 "use strict";
-let app_placeholder = document.getElementsByClassName(
-  "pp_pic_holder light_square"
-)[0];
 
-if (app_placeholder != null) {
-  let app_iframe = app_placeholder.getElementsByTagName("iframe")[0];
-  let app_document = app_iframe.contentDocument;
+let isAppPlaceHolderExist = () => {
+  return document.getElementsByClassName("pp_pic_holder light_square")
+    .length === 1
+    ? true
+    : false;
+};
+let isAppIframeExist = () => {
+  return isAppPlaceHolderExist()
+    ? document
+        .getElementsByClassName("pp_pic_holder light_square")[0]
+        .getElementsByTagName("iframe").length === 1
+      ? true
+      : false
+    : false;
+};
+let isExampleContainerExist = () => {
+  return isAppIframeExist()
+    ? document
+        .getElementsByClassName("pp_pic_holder light_square")[0]
+        .getElementsByTagName("iframe")[0]
+        .contentDocument.getElementById("example_container")
+      ? true
+      : false
+    : false;
+};
+let isHandsExist = () => {
+  return isAppIframeExist()
+    ? document
+        .getElementsByClassName("pp_pic_holder light_square")[0]
+        .getElementsByTagName("iframe")[0]
+        .contentDocument.getElementById("hands")
+      ? true
+      : false
+    : false;
+};
+let isKeyBoardExist = () => {
+  return isAppIframeExist()
+    ? document
+        .getElementsByClassName("pp_pic_holder light_square")[0]
+        .getElementsByTagName("iframe")[0]
+        .contentDocument.getElementById("virtual_keyboard")
+      ? true
+      : false
+    : false;
+};
 
-  let start_btn = app_document.getElementById("start_btn");
+let makeProgressBarHidden = () => {
+  if (isExampleContainerExist()) {
+    let progressBar = document
+      .getElementsByClassName("pp_pic_holder light_square")[0]
+      .getElementsByTagName("iframe")[0]
+      .contentDocument.getElementById("progress_bar");
 
-  start_btn.addEventListener("click", setInterval(hider, 1000), false);
-}
-
-//hands.hidden = true;
-//key_board.hidden = true;
-let hider = () => {
-  let app_placeholder = document.getElementsByClassName(
-    "pp_pic_holder light_square"
-  )[0];
-  if (app_placeholder != null) {
-    let app_iframe = app_placeholder.getElementsByTagName("iframe")[0];
-    let app_document = app_iframe.contentDocument;
-    let hands = app_document.getElementById("hands");
-    let key_board = app_document.getElementById("virtual_keyboard");
-    if (hands != null) hands.hidden = true;
-    if (key_board != null) key_board.hidden = true;
+    progressBar.hidden = true;
   }
 };
+
+let makeAdHidden = () => {
+  if (isAppIframeExist()) {
+    let Ad = document
+      .getElementsByClassName("pp_pic_holder light_square")[0]
+      .getElementsByTagName("iframe")[0]
+      .contentDocument.getElementsByTagName("iframe")[0];
+    Ad.style.visibility = "hidden";
+  }
+};
+
+let makeHandsHidden = () => {
+  if (isHandsExist()) {
+    let hands = document
+      .getElementsByClassName("pp_pic_holder light_square")[0]
+      .getElementsByTagName("iframe")[0]
+      .contentDocument.getElementById("hands");
+    hands.hidden = true;
+  }
+};
+
+let makeKeyBoardHidden = () => {
+  if (isKeyBoardExist()) {
+    let hands = document
+      .getElementsByClassName("pp_pic_holder light_square")[0]
+      .getElementsByTagName("iframe")[0]
+      .contentDocument.getElementById("virtual_keyboard");
+    hands.hidden = true;
+  }
+};
+
+let hider = () => {
+  makeAdHidden();
+  makeProgressBarHidden();
+  makeKeyBoardHidden();
+  makeHandsHidden();
+  console.log(new Date());
+};
+
+setInterval(hider, 3000);
