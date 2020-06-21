@@ -69,12 +69,26 @@ let makeKeyBoardHidden = () => {
   }
 };
 
+let makeTextThin = () => {
+  if (isExampleContainerExist()) {
+    let sentenceText = document
+      .getElementById("typing_content")
+      .contentDocument.getElementById("sentenceText");
+    let kanaText = document
+      .getElementById("typing_content")
+      .contentDocument.getElementById("kanaText");
+    if (!!sentenceText) sentenceText.setAttribute("style", "opacity:0.3");
+    if (!!kanaText) kanaText.setAttribute("style", "opacity:0.3");
+  }
+};
+
 let hider = () => {
   makeAdHidden();
   makeProgressBarHidden();
   makeKeyBoardHidden();
   makeHandsHidden();
-  console.log(new Date());
+  makeTextThin();
+  //console.log(new Date());
 };
 
-setInterval(hider, 3000);
+setInterval(hider, 100);
