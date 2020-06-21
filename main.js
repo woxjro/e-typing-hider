@@ -88,7 +88,6 @@ let hider = () => {
   makeKeyBoardHidden();
   makeHandsHidden();
   makeTextThin();
-  //console.log(new Date());
 };
 
 setInterval(hider, 100);
