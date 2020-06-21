@@ -1,45 +1,31 @@
 "use strict";
 
-let isAppPlaceHolderExist = () => {
-  return document.getElementsByClassName("pp_pic_holder light_square")
-    .length === 1
-    ? true
-    : false;
+let isTypingContentExist = () => {
+  return !!document.getElementById("typing_content") ? true : false;
 };
-let isAppIframeExist = () => {
-  return isAppPlaceHolderExist()
-    ? document
-        .getElementsByClassName("pp_pic_holder light_square")[0]
-        .getElementsByTagName("iframe").length === 1
-      ? true
-      : false
-    : false;
-};
+
 let isExampleContainerExist = () => {
-  return isAppIframeExist()
+  return isTypingContentExist()
     ? document
-        .getElementsByClassName("pp_pic_holder light_square")[0]
-        .getElementsByTagName("iframe")[0]
+        .getElementById("typing_content")
         .contentDocument.getElementById("example_container")
       ? true
       : false
     : false;
 };
 let isHandsExist = () => {
-  return isAppIframeExist()
+  return isTypingContentExist()
     ? document
-        .getElementsByClassName("pp_pic_holder light_square")[0]
-        .getElementsByTagName("iframe")[0]
+        .getElementById("typing_content")
         .contentDocument.getElementById("hands")
       ? true
       : false
     : false;
 };
 let isKeyBoardExist = () => {
-  return isAppIframeExist()
+  return isTypingContentExist()
     ? document
-        .getElementsByClassName("pp_pic_holder light_square")[0]
-        .getElementsByTagName("iframe")[0]
+        .getElementById("typing_content")
         .contentDocument.getElementById("virtual_keyboard")
       ? true
       : false
@@ -49,8 +35,7 @@ let isKeyBoardExist = () => {
 let makeProgressBarHidden = () => {
   if (isExampleContainerExist()) {
     let progressBar = document
-      .getElementsByClassName("pp_pic_holder light_square")[0]
-      .getElementsByTagName("iframe")[0]
+      .getElementById("typing_content")
       .contentDocument.getElementById("progress_bar");
 
     progressBar.hidden = true;
@@ -58,10 +43,9 @@ let makeProgressBarHidden = () => {
 };
 
 let makeAdHidden = () => {
-  if (isAppIframeExist()) {
+  if (isTypingContentExist()) {
     let Ad = document
-      .getElementsByClassName("pp_pic_holder light_square")[0]
-      .getElementsByTagName("iframe")[0]
+      .getElementById("typing_content")
       .contentDocument.getElementsByTagName("iframe")[0];
     Ad.style.visibility = "hidden";
   }
@@ -70,8 +54,7 @@ let makeAdHidden = () => {
 let makeHandsHidden = () => {
   if (isHandsExist()) {
     let hands = document
-      .getElementsByClassName("pp_pic_holder light_square")[0]
-      .getElementsByTagName("iframe")[0]
+      .getElementById("typing_content")
       .contentDocument.getElementById("hands");
     hands.hidden = true;
   }
@@ -80,8 +63,7 @@ let makeHandsHidden = () => {
 let makeKeyBoardHidden = () => {
   if (isKeyBoardExist()) {
     let hands = document
-      .getElementsByClassName("pp_pic_holder light_square")[0]
-      .getElementsByTagName("iframe")[0]
+      .getElementById("typing_content")
       .contentDocument.getElementById("virtual_keyboard");
     hands.hidden = true;
   }
