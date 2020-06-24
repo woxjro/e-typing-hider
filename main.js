@@ -77,7 +77,8 @@ let makeTextThin = () => {
     let kanaText = document
       .getElementById("typing_content")
       .contentDocument.getElementById("kanaText");
-    if (!!sentenceText) sentenceText.setAttribute("style", "opacity:0.3");
+    if (!!sentenceText && !document.title.includes("英語"))
+      sentenceText.setAttribute("style", "opacity:0.3");
     if (!!kanaText) kanaText.setAttribute("style", "opacity:0.3");
   }
 };
@@ -90,4 +91,4 @@ let hider = () => {
   makeTextThin();
 };
 
-setInterval(hider, 100);
+setInterval(hider, 70);

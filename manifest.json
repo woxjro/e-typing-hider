@@ -1,7 +1,7 @@
 {
   "name": "e-typing-hider",
   "version": "1.0",
-  "description": "いろいろ隠す奴",
+  "description": "いろいろ隠す奴!",
   "content_scripts": [
     {
       "matches": ["https://www.e-typing.ne.jp/*"],
